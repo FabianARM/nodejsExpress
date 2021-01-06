@@ -1,0 +1,31 @@
+extends ../layout 
+ 
+
+block content 
+    a(href="/bicicletas/create") Crear bicicleta
+    br
+    br
+
+    table.table 
+        thead
+            tr  
+                th(scoope='col') #
+                th(scoope='col') Color
+                th(scoope='col') Modelo
+                th(scoope='col') Ubicacion
+                th(scoope='col')
+        tbody 
+            each bici in bicis 
+                tr 
+                    th(scope='row') 
+                     = bici.id
+                    td= bici.color
+                    td= bici.modelo
+                    td= bici.ubicacion
+                    td
+                        a(href='bicicletas/' + bici.id + '/update') Editar
+                    td
+                        form.inline(method='post' action='bicicletas/' + bici.id + '/delete')
+                            input(type='hidden' name='id' value=bici.id)
+                            button.link-button(type='submit' name='submit_param' value='submit_value' class='btn')
+                                = 'Eliminar'
